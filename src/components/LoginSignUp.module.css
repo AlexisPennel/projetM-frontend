@@ -25,7 +25,7 @@ form input {
     width: 100%;
     border: 2px solid var(--primaryColor-dark);
     border-radius: 10px;
-    color: var(--primaryColor);
+    color: var(--fontColor);
     font-size: 1.2rem;
 }
 
@@ -49,6 +49,10 @@ form input::placeholder {
 .inputError:focus {
     border:2px solid red;
     box-shadow: 0 0 10px red;
+}
+
+.error {
+    font-size: 1rem;
 }
 
 .submitBtn {

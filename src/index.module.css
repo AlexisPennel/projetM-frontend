@@ -15,12 +15,12 @@ font-family: 'Quicksand', sans-serif; */
 
 body, main {
     min-height: 100vh;
-    width: 100vw;
+    max-width: 100vw;
 }
 
 body > div { 
     min-height: 100vh;
-    width: 100vw;
+    max-width: 100vw;
 }
 
 main {

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styles from './LoginSignUp.module.css'
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import api from '../api';
+import checkData from '../lib/checkData';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -13,20 +14,27 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const data = {
-            email: email,
-            password: password
+        if (checkData(email, password)) {
+
+            const data = {
+                email: email.trim(),
+                password: password.trim()
+            }
+
+            api.post("/api/auth/login", data)
+                .then(() => {
+                    console.log("yes !");
+                    navigate('/dashboard')
+                })
+                .catch((res) => {
+                    setIsError(true);
+                    setError("Invalid email or password. Password must be 8 characters or more and include at least one uppercase letter, one number, and one special character")
+                })
+
         }
 
-        axios.post("https://myfoodplanner-api.onrender.com/api/auth/login", data)
-            .then(() => {
-                console.log("yes !");
-                navigate('/dashboard')
-            })
-            .catch((res) => {
-                setIsError(true);
-                setError("Email or password incorrect. The password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character. ")
-            })
+        setError('Invalid email or password. Password must be 8 characters or more and include at least one uppercase letter, one number, and one special character');
+        setIsError(true);
     }
 
     return (
@@ -41,7 +49,7 @@ const Login = () => {
                 </label>
                 <input type="submit" value='submit' className={styles.submitBtn} />
             </form>
-            <p>{error}</p>
+            <p className={styles.error}>{error}</p>
         </div>
     );
 };

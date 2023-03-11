@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styles from './LoginSignUp.module.css'
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import api from '../api';
+import checkData from '../lib/checkData';
 
 
 const SignUp = () => {
@@ -14,20 +15,26 @@ const SignUp = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const data = {
-            email: email,
-            password: password
+        if (checkData(email, password)) {
+
+            const data = {
+                email: email,
+                password: password
+            }
+
+            api.post('/api/auth/signup', data)
+                .then(() => {
+                    navigate('/dashboard')
+                })
+                .catch((error) => {
+                    setIsError(true);
+                    setError("Invalid email or password. Password must be 8 characters or more and include at least one uppercase letter, one number, and one special character.")
+                })
+
         }
 
-        axios.post("http://localhost:3000/api/auth/signup", data)
-            .then(() => {
-                navigate('/dashboard')
-            })
-            .catch((error) => {
-                setIsError(true);
-                setError("Email or password incorrect. The password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character. ")
-            })
-
+        setError('Invalid email or password. Password must be 8 characters or more and include at least one uppercase letter, one number, and one special character');
+        setIsError(true);
     }
 
     return (
@@ -42,7 +49,7 @@ const SignUp = () => {
                 </label>
                 <input type="submit" value='submit' className={styles.submitBtn} />
             </form>
-            <p>{error}</p>
+            <p className={styles.error}>{error}</p>
         </div>
     );
 };
