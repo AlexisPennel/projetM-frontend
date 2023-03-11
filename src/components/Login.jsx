@@ -18,7 +18,7 @@ const Login = () => {
             password: password
         }
 
-        axios.post("http://localhost:3000/api/auth/login", data)
+        axios.post("https://myfoodplanner-api.onrender.com/api/auth/login", data)
             .then(() => {
                 console.log("yes !");
                 navigate('/dashboard')
