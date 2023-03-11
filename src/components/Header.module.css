@@ -1,0 +1,14 @@
+.container {
+    height:20vh;
+    width: 100%;
+    background-color: rgb(54, 53, 53);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+img {
+    height: 80%;
+    margin-bottom: 2%;
+    margin-top: 2%;
+}

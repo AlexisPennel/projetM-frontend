@@ -1,0 +1,48 @@
+/* font-family: 'Oswald', sans-serif;
+font-family: 'Quicksand', sans-serif; */
+
+:root {
+    font-family: 'Quicksand', sans-serif;
+    --fontColor:#ffff;
+    --fontFam1: 'Oswald', sans-serif;
+    --fontFam2: 'Quicksand', sans-serif;
+    --darkColor:  #1E2022;
+    --primaryColor-light: #8CD163;
+    --primaryColor: #56A12A;
+    --primaryColor-dark:#336019;
+    color: var(--fontColor);
+}
+
+body, main {
+    min-height: 100vh;
+    width: 100vw;
+}
+
+body > div { 
+    min-height: 100vh;
+    width: 100vw;
+}
+
+main {
+    background-image: url(../public/images/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex !important;
+    justify-content: center;
+}
+
+footer {
+    height: 10vh;
+    background-color: var(--darkColor);
+    overflow: hidden;
+}
+
+h1, h2 {
+    font-family: var(--fontFam1);
+    color: var(--fontColor);
+}
+
+p {
+    font-family: var(--fontFam2);
+    color: var(--fontColor);
+}
