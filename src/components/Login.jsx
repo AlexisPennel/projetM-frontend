@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './LoginSignUp.module.css'
 import { useNavigate } from 'react-router-dom';
 import api from '../api';
@@ -9,10 +9,17 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isError, setIsError] = useState(false);
+    const [isConnected, setIsConnected] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        localStorage.setItem('isConnected', JSON.stringify(isConnected))
+    }, [isConnected]);
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
 
         if (checkData(email, password)) {
 
@@ -23,18 +30,23 @@ const Login = () => {
 
             api.post("/api/auth/login", data)
                 .then(() => {
-                    console.log("yes !");
-                    navigate('/dashboard')
+                    setIsConnected(true);
+                    setTimeout(() => {
+                        navigate('/dashboard')
+                    }, "200");
                 })
                 .catch((res) => {
                     setIsError(true);
                     setError("Invalid email or password. Password must be 8 characters or more and include at least one uppercase letter, one number, and one special character")
                 })
 
+        } else {
+
+            setError('Invalid email or password. Password must be 8 characters or more and include at least one uppercase letter, one number, and one special character');
+            setIsError(true);
+
         }
 
-        setError('Invalid email or password. Password must be 8 characters or more and include at least one uppercase letter, one number, and one special character');
-        setIsError(true);
     }
 
     return (

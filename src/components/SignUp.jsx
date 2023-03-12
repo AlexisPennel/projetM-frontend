@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './LoginSignUp.module.css'
 import { useNavigate } from 'react-router-dom';
 import api from '../api';
@@ -10,13 +10,19 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isError, setIsError] = useState(false);
+    const [isConnected, setIsConnected] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        localStorage.setItem('isConnected', JSON.stringify(isConnected))
+        console.log(localStorage)
+    }, [isConnected]);
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         if (checkData(email, password)) {
-
             const data = {
                 email: email,
                 password: password
@@ -24,7 +30,10 @@ const SignUp = () => {
 
             api.post('/api/auth/signup', data)
                 .then(() => {
-                    navigate('/dashboard')
+                    setIsConnected(true);
+                    setTimeout(() => {
+                        navigate('/dashboard')
+                    }, "200");
                 })
                 .catch((error) => {
                     setIsError(true);

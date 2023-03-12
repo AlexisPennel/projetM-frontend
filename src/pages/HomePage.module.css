@@ -54,11 +54,11 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
+    border-radius: 10px;
     background-color: var(--primaryColor);
-    padding: 0.5rem;
-    border: 2px solid var(--fontColor);
+    padding: 0.3rem;
     margin-right: 5%;
+    
 }
 
 .numbers {
@@ -78,12 +78,13 @@ h1 {
     width: 8rem;
     height: 3rem;
     border-radius: 20px;
-    background-color: var(--primaryColor);
+    background-color: rgba(255, 255, 255, 0);
     border: 3px solid var(--primaryColor);
     font-size: 1.3rem;
-    color: black;
     cursor:pointer;
     transform: scale(1);
+    font-family: var(--fontFam1);
+    color: var(--fontColor1);
 }
 
 .button__signUp {
@@ -93,17 +94,19 @@ h1 {
     background-color: var(--primaryColor);
     border:none;
     font-size: 1.3rem;
+    font-family: var(--fontFam1);
     cursor: pointer;
     transform: scale(1);
-    
 }
 
-.button__login:hover {
+.button__login:active {
     transform: scale(1.15);
-    transition: transform 200ms ease-in-out;
+    transition: transform 50ms ease-in-out;
+    box-shadow: 0px 0px 20px -5px var(--primaryColor-light);
 }
 
-.button__signUp:hover {
+.button__signUp:active {
     transform: scale(1.15);
-    transition: transform 200ms ease-in-out;
+    transition: transform 50ms ease-in-out;
+    box-shadow: 0px 0px 20px -5px var(--primaryColor-light);
 }

@@ -1,0 +1,43 @@
+.container {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.706);
+    backdrop-filter: blur(2px);
+}
+
+.content {
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.recipes__container{
+    background-color: rgba(255, 255, 255, 0.514);
+    margin-left: 3%;
+    margin-right: 3%;
+    border-radius: 10px;
+    /* border: 1px solid var(--primaryColor); */
+}
+
+.recipes__container h2{
+    color: black;
+    margin-left: 3%;
+}
+
+.logout__btn {
+    width: 8rem;
+    height: 3rem;
+    border-radius: 20px;
+    background-color: var(--primaryColor);
+    border:none;
+    font-size: 1.3rem;
+    font-family: var(--fontFam1);
+    cursor: pointer;
+    transform: scale(1);
+}
+
+.logout__btn:active {
+    transform: scale(1.15);
+    transition: transform 50ms ease-in-out;
+    box-shadow: 0px 0px 20px -5px var(--primaryColor-light);
+}
