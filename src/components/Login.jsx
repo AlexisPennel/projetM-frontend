@@ -27,7 +27,6 @@ const Login = () => {
                 .then(() => {
                     let isConnected = true;
                     localStorage.setItem('isConnected', JSON.stringify(isConnected));
-                    console.log(localStorage)
                     setTimeout(() => {
                         navigate('/dashboard')
                     }, "200");
