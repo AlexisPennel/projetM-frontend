@@ -1,35 +1,31 @@
 import styles from './Header.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 
 const userSvg = <FontAwesomeIcon icon={faUser} className={styles.userSvg} />
 
 const Header = () => {
-    const [isConnected, setIsConnected] = useState(false);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const isConnectedLs = JSON.parse(localStorage.getItem('isConnected'));
-        if (isConnectedLs || !isConnectedLs) {
-            setIsConnected(isConnectedLs);
-        }
-    }, []);
+    const isConnected = localStorage.getItem('isConnected');
+    console.log(isConnected)
 
     const clickUser = () => {
-        if (isConnected === false) {
+        console.log(isConnected)
+        if (isConnected === null || isConnected === 'false') {
             return window.scrollTo({
                 top: 1000,
                 behavior: 'smooth'
             });
         }
 
-        if (isConnected === true) {
+        if (isConnected === 'true') {
             return navigate('/dashboard')
         }
     };
+
 
 
     return (

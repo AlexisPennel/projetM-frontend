@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './LoginSignUp.module.css'
 import { useNavigate } from 'react-router-dom';
 import api from '../api';
@@ -9,12 +9,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isError, setIsError] = useState(false);
-    const [isConnected, setIsConnected] = useState(false);
     const navigate = useNavigate();
-
-    useEffect(() => {
-        localStorage.setItem('isConnected', JSON.stringify(isConnected))
-    }, [isConnected]);
 
 
     const handleSubmit = (e) => {
@@ -30,7 +25,9 @@ const Login = () => {
 
             api.post("/api/auth/login", data)
                 .then(() => {
-                    setIsConnected(true);
+                    let isConnected = true;
+                    localStorage.setItem('isConnected', JSON.stringify(isConnected));
+                    console.log(localStorage)
                     setTimeout(() => {
                         navigate('/dashboard')
                     }, "200");

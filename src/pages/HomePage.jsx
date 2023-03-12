@@ -16,6 +16,7 @@ const HomePage = () => {
     const [displayLogin, setDisplayLogin] = useState(true);
     const [displaySignUp, setDisplaySignUp] = useState(false);
 
+
     const handleLogin = () => {
         setDisplaySignUp(false);
         setDisplayLogin(true);
