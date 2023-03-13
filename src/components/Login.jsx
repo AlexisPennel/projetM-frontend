@@ -24,7 +24,8 @@ const Login = () => {
             }
 
             api.post("/api/auth/login", data)
-                .then(() => {
+                .then((res) => {
+                    localStorage.setItem('token', res.data.token)
                     let isConnected = true;
                     localStorage.setItem('isConnected', JSON.stringify(isConnected));
                     setTimeout(() => {
