@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styles from './LoginSignUp.module.css'
 import { useNavigate } from 'react-router-dom';
 import api from '../api';
@@ -10,6 +10,7 @@ const Login = () => {
     const [error, setError] = useState('');
     const [isError, setIsError] = useState(false);
     const navigate = useNavigate();
+    const submitBtnRef = useRef(null);
 
 
     const handleSubmit = (e) => {
@@ -25,6 +26,7 @@ const Login = () => {
 
             api.post("/api/auth/login", data)
                 .then((res) => {
+                    submitBtnRef.current.value = 'Loading ...'
                     localStorage.setItem('token', res.data.token)
                     let isConnected = true;
                     localStorage.setItem('isConnected', JSON.stringify(isConnected));
@@ -56,7 +58,7 @@ const Login = () => {
                 <label>
                     <input type="password" className={isError ? styles.inputError : null} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
                 </label>
-                <input type="submit" value='submit' className={styles.submitBtn} />
+                <input type="submit" value='submit' className={styles.submitBtn} ref={submitBtnRef} />
             </form>
             <p className={styles.error}>{error}</p>
         </div>

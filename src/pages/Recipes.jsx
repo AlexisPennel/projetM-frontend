@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import api from '../api';
 import AddRecipe from '../components/AddRecipe';
 import styles from './Recipes.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+
+const arrowLeft = <FontAwesomeIcon icon={faArrowLeft} className={styles.arrowLeft} />
 
 const Recipes = () => {
     const [recipeData, setRecipeData] = useState('');
@@ -38,6 +42,10 @@ const Recipes = () => {
 
     return (
         <div className={styles.container}>
+            <Link to={'/dashboard'} className={styles.goBack__container}>
+                <div>{arrowLeft}</div>
+                <p>Go back</p>
+            </Link>
             <div className={styles.recipe__container}>
                 <div className={styles.recipeCard__container}>
                     <h1>{recipeData.name}</h1>

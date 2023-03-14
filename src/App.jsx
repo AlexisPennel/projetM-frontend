@@ -6,6 +6,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import BaseLayout from './components/BaseLayout';
 import Dashboard from './pages/Dashboard';
 import Recipes from './pages/Recipes';
+import MyPlan from './pages/MyPlan';
 
 // import { getAccommodationsData } from './pages/Home';
 // import { getAboutData } from './pages/About';
@@ -17,6 +18,7 @@ const router = createBrowserRouter(
             <Route path='/' element={<HomePage />} />
             <Route path='dashboard' element={<Dashboard />} />
             <Route path='recipes/:id' element={<Recipes />} />
+            <Route path='plan' element={<MyPlan />} />
         </Route>
     )
 );

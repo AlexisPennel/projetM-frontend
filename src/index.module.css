@@ -8,7 +8,7 @@ font-family: 'Quicksand', sans-serif; */
     --fontFam2: 'Quicksand', sans-serif;
     --darkColor:  #1E2022;
     --primaryColor-light: #8CD163;
-    --primaryColor-lightTransparent: #8bd16391;
+    --primaryColor-lightTransparent: #8bd16354;
     --primaryColor: #56A12A;
     --primaryColor-dark:#336019;
     color: var(--fontColor);
@@ -65,4 +65,8 @@ h3 {
 
 p {
     font-size: 1rem;
+}
+
+button, a {
+    -webkit-tap-highlight-color: transparent;
 }
