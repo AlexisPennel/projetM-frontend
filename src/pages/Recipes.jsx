@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import api from '../api';
+import AddRecipe from '../components/AddRecipe';
 import styles from './Recipes.module.css'
 
 const Recipes = () => {
     const [recipeData, setRecipeData] = useState('');
     const [recipeIngredient, setRecipeIngredients] = useState([]);
+    const [edit, setEdit] = useState(false)
     let { id } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         api.get(`/api/recipes/${id}`)
@@ -19,7 +22,20 @@ const Recipes = () => {
             })
     }, [id])
 
-    console.log(recipeData.ingredients)
+    const handleEdit = () => {
+        setEdit(true);
+    };
+
+    const handleDelete = () => {
+        api.delete(`/api/recipes/${id}`)
+            .then(() => {
+                navigate("/dashboard");
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.recipe__container}>
@@ -32,9 +48,10 @@ const Recipes = () => {
                     </div>
                 </div>
                 <div className={styles.btn__container}>
-                    <div className={styles.deleteBtn}> Delete </div>
-                    <div className={styles.editBtn} > Edit </div>
+                    <div className={styles.deleteBtn} onClick={handleDelete}> Delete </div>
+                    <div className={styles.editBtn} onClick={handleEdit}> Edit </div>
                 </div>
+                {edit && <AddRecipe action='put' id={id} />}
             </div>
         </div>
     );
