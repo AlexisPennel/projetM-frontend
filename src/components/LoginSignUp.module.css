@@ -25,7 +25,7 @@ form input {
     width: 100%;
     border: 2px solid var(--primaryColor-dark);
     border-radius: 10px;
-    color: var(--primaryColor);
+    color: var(--fontColor);
     font-size: 1.2rem;
 }
 
@@ -51,6 +51,10 @@ form input::placeholder {
     box-shadow: 0 0 10px red;
 }
 
+.error {
+    font-size: 1rem;
+}
+
 .submitBtn {
     margin-top: 4%;
     height: 2.5rem;
@@ -63,8 +67,9 @@ form input::placeholder {
     cursor: pointer;
 }
 
-.submitBtn:hover {
+.submitBtn:active {
     transform: scale(1.2);
-    transition: transform 200ms ease-in-out;
+    transition: transform 100ms ease-in-out;
     cursor: pointer;
+    box-shadow: 0px 0px 20px -5px var(--primaryColor-light);
 }
