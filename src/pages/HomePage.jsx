@@ -6,14 +6,16 @@ import { fa1 } from '@fortawesome/free-solid-svg-icons'
 import { fa2 } from '@fortawesome/free-solid-svg-icons'
 import { fa3 } from '@fortawesome/free-solid-svg-icons'
 import { useState } from "react";
+// import Header from "../components/Header";
 
 const number1 = <FontAwesomeIcon icon={fa1} className={styles.numbers} />
 const number2 = <FontAwesomeIcon icon={fa2} className={styles.numbers} />
 const number3 = <FontAwesomeIcon icon={fa3} className={styles.numbers} />
 
 const HomePage = () => {
-    const [displayLogin, setDisplayLogin] = useState(false);
+    const [displayLogin, setDisplayLogin] = useState(true);
     const [displaySignUp, setDisplaySignUp] = useState(false);
+
 
     const handleLogin = () => {
         setDisplaySignUp(false);
@@ -24,7 +26,6 @@ const HomePage = () => {
                 behavior: 'smooth'
             });
         }, "10")
-
     };
 
     const handleSignUp = () => {
@@ -40,7 +41,9 @@ const HomePage = () => {
 
     return (
         <>
+
             <div className={styles.container}>
+                {/* <Header /> */}
                 <div className={styles.presentation__container}>
                     <h1>Looking for a simple and efficient way to plan your weekly meals?</h1>
                     <div className={styles.container__step}>

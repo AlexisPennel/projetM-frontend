@@ -8,6 +8,7 @@ font-family: 'Quicksand', sans-serif; */
     --fontFam2: 'Quicksand', sans-serif;
     --darkColor:  #1E2022;
     --primaryColor-light: #8CD163;
+    --primaryColor-lightTransparent: #8bd16391;
     --primaryColor: #56A12A;
     --primaryColor-dark:#336019;
     color: var(--fontColor);
@@ -15,12 +16,13 @@ font-family: 'Quicksand', sans-serif; */
 
 body, main {
     min-height: 100vh;
-    width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 
 body > div { 
     min-height: 100vh;
-    width: 100vw;
+    max-width: 100vw;
 }
 
 main {
@@ -28,7 +30,9 @@ main {
     background-repeat: no-repeat;
     background-size: cover;
     display: flex !important;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 footer {
@@ -45,4 +49,20 @@ h1, h2 {
 p {
     font-family: var(--fontFam2);
     color: var(--fontColor);
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.7rem;
+}
+
+h3 { 
+    font-size: 1.2rem;
+}
+
+p {
+    font-size: 1rem;
 }

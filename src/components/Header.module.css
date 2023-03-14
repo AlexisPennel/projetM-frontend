@@ -3,12 +3,36 @@
     width: 100%;
     background-color: rgb(54, 53, 53);
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
 }
 
-img {
-    height: 80%;
-    margin-bottom: 2%;
-    margin-top: 2%;
+.logo{
+    width: 50%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo img {
+    height: 100%;
+}
+
+.userSvg__container {
+    justify-self: flex-end;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.1rem;
+    border-radius: 10px;
+    border: 2px solid var(--primaryColor);
+    position: absolute;
+    left: 85%;
+    cursor: pointer;
+}
+.userSvg {
+    color: white;
+    height: 50%;
 }
