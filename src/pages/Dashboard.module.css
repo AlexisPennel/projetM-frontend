@@ -14,10 +14,11 @@
 }
 
 .recipes__container {
-    background-color: rgba(255, 255, 255, 0.096);
-    backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.144);
     border-radius: 10px;
 }
+
+
 
 .recipes__container h2 {
     color: var(--fontColor);
@@ -34,7 +35,7 @@
     border-radius: 20px;
     background: rgb(86, 161, 42);
     background: linear-gradient(266deg, rgba(86, 161, 42, 1) 55%, rgba(51, 96, 25, 1) 100%);
-    border: none;
+    border: 3px solid var(--primaryColor-light);
     font-size: 1.1rem;
     padding: 0.7rem;
     font-family: var(--fontFam1);

@@ -10,10 +10,8 @@ const Header = () => {
     const navigate = useNavigate();
 
     const isConnected = localStorage.getItem('isConnected');
-    console.log(isConnected)
 
     const clickUser = () => {
-        console.log(isConnected)
         if (isConnected === null || isConnected === 'false') {
             return window.scrollTo({
                 top: 1000,

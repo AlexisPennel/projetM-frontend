@@ -2,13 +2,14 @@ import React from 'react';
 import styles from './RecipesCard.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 
 const editSvg = <FontAwesomeIcon icon={faPenToSquare} />
 
 const RecipesCard = ({ recipes }) => {
     return (
-        <div className={styles.container}>
+        <Link to={`/recipes/${recipes._id}`} className={styles.container}>
             <div className={styles.title__container}>
                 <h3>{recipes.name}</h3>
                 <div className={styles.editSvg}>{editSvg}</div>
@@ -18,7 +19,7 @@ const RecipesCard = ({ recipes }) => {
                     <p key={index}>{ingredients}</p>
                 ))}
             </div>
-        </div>
+        </Link>
     );
 };
 

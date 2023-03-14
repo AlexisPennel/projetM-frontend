@@ -15,7 +15,6 @@ const Dashboard = () => {
         api.get("/api/recipes")
             .then((recipes) => {
                 setRecipes(recipes.data)
-                console.log(recipes)
             })
     }, [])
 
@@ -41,7 +40,7 @@ const Dashboard = () => {
                     <h2>Recipes</h2>
                     <div className={styles.recipesCards__container}>
                         {recipes.map((recipes, index) => (
-                            <RecipesCard recipes={recipes} />
+                            <RecipesCard recipes={recipes} key={index} />
                         ))}
                     </div>
                     <button className={styles.button__addRecipe} onClick={addRecipe}>Add recipe +</button>

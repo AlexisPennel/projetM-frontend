@@ -30,7 +30,9 @@ main {
     background-repeat: no-repeat;
     background-size: cover;
     display: flex !important;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 footer {
