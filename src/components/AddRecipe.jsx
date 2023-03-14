@@ -33,7 +33,6 @@ const AddRecipe = () => {
                     setFormatError(false);
                     setSaveError(false);
                     setSaveValidation(true);
-                    window.location.reload(false);
                 })
                 .catch((error) => {
                     setSaveError(true);
