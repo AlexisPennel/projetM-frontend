@@ -6,9 +6,9 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 const arrowLeft = <FontAwesomeIcon icon={faArrowLeft} className={styles.arrowLeft} />
 
-const MealBoxBreakfast = ({ data, day }) => {
+const MealBoxLunch = ({ data, day }) => {
     const [popUpDisplay, setPopUpDisplay] = useState(false);
-    const [breafastSelected, setBreakfastSelected] = useState(false);
+    const [lunchSelected, setLunchSelected] = useState(false);
     const [recipedata, setRecipeData] = useState('');
 
     const showPopUp = () => {
@@ -17,12 +17,12 @@ const MealBoxBreakfast = ({ data, day }) => {
 
     const validateSelect = () => {
         const mealSelected = localStorage.getItem('recipeSelected');
-        localStorage.setItem(`${day}Breakfast`, mealSelected);
-        const breakfast = localStorage.getItem(`${day}Breakfast`);
-        const breakfastId = JSON.parse(breakfast).id;
+        localStorage.setItem(`${day}Lunch`, mealSelected);
+        const Lunch = localStorage.getItem(`${day}Lunch`);
+        const LunchId = JSON.parse(Lunch).id;
         setPopUpDisplay(false);
-        setBreakfastSelected(true);
-        setRecipeData(data.find(element => element._id === breakfastId))
+        setLunchSelected(true);
+        setRecipeData(data.find(element => element._id === LunchId))
     }
 
     const Goback = () => {
@@ -32,9 +32,9 @@ const MealBoxBreakfast = ({ data, day }) => {
     return (
         <>
             <div className={styles.container}>
-                {breafastSelected === false ?
+                {lunchSelected === false ?
                     <div className={styles.meal__container} onClick={showPopUp}>
-                        <p>Click and select a breakfast</p>
+                        <p>Click and select a lunch</p>
                     </div> :
                     <div className={styles.meal__containerActive} onClick={showPopUp}>
                         <h3>{recipedata.name}</h3>
@@ -60,4 +60,4 @@ const MealBoxBreakfast = ({ data, day }) => {
     );
 };
 
-export default MealBoxBreakfast;
+export default MealBoxLunch;
