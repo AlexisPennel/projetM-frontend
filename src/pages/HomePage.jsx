@@ -45,20 +45,20 @@ const HomePage = () => {
             <div className={styles.container}>
                 {/* <Header /> */}
                 <div className={styles.presentation__container}>
-                    <h1>Looking for a simple and efficient way to plan your weekly meals?</h1>
+                    <h1>Need an easy way to plan meals weekly?</h1>
                     <div className={styles.container__step}>
                         <div className={styles.number__container}>{number1}</div>
                         <p>Add your favorite recipes</p>
                     </div>
                     <div className={styles.container__step}>
                         <div className={styles.number__container}>{number2}</div>
-                        <p>Select meals for each day of the week</p>
+                        <p>Plan meals for the week</p>
                     </div>
                     <div className={styles.container__step}>
                         <div className={styles.number__container}>{number3}</div>
                         <p>Generate a shopping list in no time</p>
                     </div>
-                    <p> With just a few clicks, you can plan your meals for the week and ensure that you have all the ingredients you need<br />So why wait? Start using our meal planning tool today !</p>
+                    <p> Easily plan your weekly meals and get all the ingredients.<br />Start meal planning now !</p>
                     <div className={styles.button__container}>
                         <button className={styles.button__login} onClick={handleLogin}>Login</button>
                         <button className={styles.button__signUp} onClick={handleSignUp}>SignUp</button>

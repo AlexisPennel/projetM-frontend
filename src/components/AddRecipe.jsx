@@ -6,7 +6,7 @@ import api from '../api';
 
 const editSvg = <FontAwesomeIcon icon={faPenToSquare} />
 
-const AddRecipe = () => {
+const AddRecipe = ({ action, id }) => {
     const [ingredients, setIngredients] = useState([]);
     const [recipeName, setRecipeName] = useState('');
     const [saveValidation, setSaveValidation] = useState(false)
@@ -21,6 +21,31 @@ const AddRecipe = () => {
     }
 
     const handleSave = () => {
+        if (action === 'put') {
+            if (recipeName !== '' && ingredients.length > 0) {
+                const data = {
+                    name: recipeName,
+                    ingredients: ingredients
+                }
+
+                api.put(`/api/recipes/${id}`, data)
+                    .then(() => {
+                        setIngredients([]);
+                        setRecipeName('');
+                        setFormatError(false);
+                        setSaveError(false);
+                        setSaveValidation(true);
+                        window.location.reload(false);
+                    })
+                    .catch((error) => {
+                        setSaveError(true);
+                    })
+                return
+            }
+            setFormatError(true);
+        }
+
+
         if (recipeName !== '' && ingredients.length > 0) {
             const data = {
                 name: recipeName,
@@ -33,6 +58,7 @@ const AddRecipe = () => {
                     setFormatError(false);
                     setSaveError(false);
                     setSaveValidation(true);
+                    window.location.reload(false);
                 })
                 .catch((error) => {
                     setSaveError(true);
@@ -51,7 +77,6 @@ const AddRecipe = () => {
     const pushIngredient = (e) => {
         e.preventDefault()
         const newIngredient = inputIngredientRef.current.value;
-        console.log(newIngredient);
         setIngredients(oldArray => [...oldArray, newIngredient]);
         inputIngredientRef.current.value = '';
     }
