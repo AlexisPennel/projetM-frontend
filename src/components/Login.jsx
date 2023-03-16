@@ -3,17 +3,19 @@ import styles from './LoginSignUp.module.css'
 import { useNavigate } from 'react-router-dom';
 import api from '../api';
 import checkData from '../lib/checkData';
+import { ThreeDots } from 'react-loader-spinner';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isError, setIsError] = useState(false);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-    const submitBtnRef = useRef(null);
 
 
     const handleSubmit = (e) => {
+        setLoading(true)
         e.preventDefault();
 
 
@@ -26,15 +28,16 @@ const Login = () => {
 
             api.post("/api/auth/login", data)
                 .then((res) => {
-                    submitBtnRef.current.value = 'Loading ...'
                     localStorage.setItem('token', res.data.token)
                     let isConnected = true;
                     localStorage.setItem('isConnected', JSON.stringify(isConnected));
+                    setLoading(false)
                     setTimeout(() => {
                         navigate('/dashboard')
                     }, "200");
                 })
                 .catch((res) => {
+                    setLoading(false)
                     setIsError(true);
                     setError("Invalid email or password. Password must be 8 characters or more and include at least one uppercase letter, one number, and one special character")
                 })
@@ -58,7 +61,8 @@ const Login = () => {
                 <label>
                     <input type="password" className={isError ? styles.inputError : null} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
                 </label>
-                <input type="submit" value='submit' className={styles.submitBtn} ref={submitBtnRef} />
+                <input type="submit" value='submit' className={styles.submitBtn} />
+                {loading && <ThreeDots color="#56A12A" />}
             </form>
             <p className={styles.error}>{error}</p>
         </div>

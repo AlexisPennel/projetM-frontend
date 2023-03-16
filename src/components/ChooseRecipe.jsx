@@ -6,14 +6,16 @@ import styles from './ChooseRecipe.module.css'
 const ChooseRecipe = ({ recipes }) => {
     const [isSelected, setIsSelected] = useState(false);
 
+
     const chooseRecipe = (id, name) => {
+        setIsSelected(false)
         const recipeSelected = {
             id: id,
             name: name
         };
         localStorage.setItem('recipeSelected', JSON.stringify(recipeSelected));
         console.log(localStorage)
-        setIsSelected(true)
+        setIsSelected(!isSelected)
     }
 
     return (

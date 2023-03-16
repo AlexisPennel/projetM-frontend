@@ -10,6 +10,7 @@ const MealBoxBreakfast = ({ data, day }) => {
     const [popUpDisplay, setPopUpDisplay] = useState(false);
     const [breafastSelected, setBreakfastSelected] = useState(false);
     const [recipedata, setRecipeData] = useState('');
+    const [loading, setLoading] = useState(true);
 
     const showPopUp = () => {
         setPopUpDisplay(true);
@@ -51,9 +52,11 @@ const MealBoxBreakfast = ({ data, day }) => {
                     <div>{arrowLeft}</div>
                     <p>Go back</p>
                 </div>
-                {data.map((recipes, index) => (
-                    <ChooseRecipe key={index} recipes={recipes} />
-                ))};
+                <div className={styles.popUp__recipes__container}>
+                    {data.map((recipes, index) => (
+                        <ChooseRecipe key={index} recipes={recipes} />
+                    ))};
+                </div>
                 <button onClick={validateSelect} className={styles.validatePopUp}>validate</button>
             </div>}
         </>

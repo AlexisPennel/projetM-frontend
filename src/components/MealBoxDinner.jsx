@@ -51,9 +51,11 @@ const MealBoxDinner = ({ data, day }) => {
                     <div>{arrowLeft}</div>
                     <p>Go back</p>
                 </div>
-                {data.map((recipes, index) => (
-                    <ChooseRecipe key={index} recipes={recipes} />
-                ))};
+                <div className={styles.popUp__recipes__container}>
+                    {data.map((recipes, index) => (
+                        <ChooseRecipe key={index} recipes={recipes} />
+                    ))};
+                </div>
                 <button onClick={validateSelect} className={styles.validatePopUp}>validate</button>
             </div>}
         </>
