@@ -3,6 +3,7 @@ import styles from './LoginSignUp.module.css'
 import { useNavigate } from 'react-router-dom';
 import api from '../api';
 import checkData from '../lib/checkData';
+import { ThreeDots } from 'react-loader-spinner';
 
 
 const SignUp = () => {
@@ -10,10 +11,12 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isError, setIsError] = useState(false);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
 
     const handleSubmit = (e) => {
+        setLoading(true);
         e.preventDefault();
 
         if (checkData(email, password)) {
@@ -26,11 +29,13 @@ const SignUp = () => {
                 .then(() => {
                     let isConnected = true;
                     localStorage.setItem('isConnected', JSON.stringify(isConnected));
+                    setLoading(false)
                     setTimeout(() => {
                         navigate('/dashboard')
                     }, "200");
                 })
                 .catch((error) => {
+                    setLoading(false)
                     setIsError(true);
                     setError("Invalid email or password. Password must be 8 characters or more and include at least one uppercase letter, one number, and one special character.")
                 })
@@ -53,6 +58,7 @@ const SignUp = () => {
                     <input type="password" className={isError ? styles.inputError : null} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
                 </label>
                 <input type="submit" value='submit' className={styles.submitBtn} />
+                {loading && <ThreeDots color="#56A12A" />}
             </form>
             <p className={styles.error}>{error}</p>
         </div>

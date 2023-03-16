@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import styles from './Dashboard.module.css';
 import api from '../api';
 import RecipesCard from '../components/RecipesCard';
@@ -8,25 +8,35 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { fa1 } from '@fortawesome/free-solid-svg-icons'
 import { fa2 } from '@fortawesome/free-solid-svg-icons'
 import { fa3 } from '@fortawesome/free-solid-svg-icons'
-
+import { ThreeDots } from 'react-loader-spinner';
 const number1 = <FontAwesomeIcon icon={fa1} className={styles.numbers} />
 const number2 = <FontAwesomeIcon icon={fa2} className={styles.numbers} />
 const number3 = <FontAwesomeIcon icon={fa3} className={styles.numbers} />
 
+const getRecipesData = async () => {
+
+    try {
+        const response = await api.get("/api/recipes");
+        return response.data
+    } catch (error) {
+        return -1
+    }
+
+};
+
 const Dashboard = () => {
     const navigate = useNavigate();
-    const [recipes, setRecipes] = useState([]);
+    const [recipes, setRecipes] = useState(useLoaderData());
     const [addRecipeDisplay, setAddRecipeDisplay] = useState(false);
     const [loading, setLoading] = useState(true);
 
 
     useEffect(() => {
-        api.get("/api/recipes")
-            .then((recipes) => {
-                setLoading(false)
-                setRecipes(recipes.data)
-            })
-    }, [])
+        if (recipes !== -1) {
+            setLoading(false)
+        }
+    }, [recipes])
+
 
     const addRecipe = () => {
         setAddRecipeDisplay(!addRecipeDisplay);
@@ -56,7 +66,7 @@ const Dashboard = () => {
                         <h2> My recipes</h2>
                     </header>
                     <div className={styles.recipesCards__container}>
-                        {loading && <p>Loading, please wait ...</p>}
+                        {loading && <ThreeDots color="#56A12A" />}
                         {recipes.map((recipes, index) => (
                             <RecipesCard recipes={recipes} key={index} />
                         ))}
@@ -69,7 +79,7 @@ const Dashboard = () => {
                         <div className={styles.number__container}>{number2}</div>
                         <h2>My plan</h2>
                     </header>
-                    {loading && <p>Loading, please wait ...</p>}
+                    {loading && <ThreeDots color="#56A12A" />}
                     <button className={styles.buttons} onClick={createPlan}>Create a plan +</button>
                 </section>
                 <section className={styles.section__container}>
@@ -85,3 +95,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+export { getRecipesData };

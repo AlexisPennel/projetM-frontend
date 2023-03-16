@@ -6,7 +6,6 @@ import { fa1 } from '@fortawesome/free-solid-svg-icons'
 import { fa2 } from '@fortawesome/free-solid-svg-icons'
 import { fa3 } from '@fortawesome/free-solid-svg-icons'
 import { useState } from "react";
-// import Header from "../components/Header";
 
 const number1 = <FontAwesomeIcon icon={fa1} className={styles.numbers} />
 const number2 = <FontAwesomeIcon icon={fa2} className={styles.numbers} />
@@ -43,7 +42,6 @@ const HomePage = () => {
         <>
 
             <div className={styles.container}>
-                {/* <Header /> */}
                 <div className={styles.presentation__container}>
                     <h1>Need an easy way to plan meals weekly?</h1>
                     <div className={styles.container__step}>
