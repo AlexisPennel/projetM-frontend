@@ -3,7 +3,7 @@
     background: linear-gradient(266deg, rgb(217, 251, 197) 0%, rgba(140,209,99,1) 25%, rgba(86,161,42,1) 100%);
     box-shadow: -1px 0px 10px rgba(0, 0, 0, 0.5);
     height: auto;
-    width: 10rem;
+    width: 10.5rem;
     border-radius: 10px;
     margin-left: 2%;
     display: flex;
@@ -36,13 +36,14 @@
 
 .ingredients__container {
     display: flex;
-    width: 100%;
-    margin-left: 3%;
+    width: 95%;
+    margin-left: 2%;
+    margin-right: 2%;
     flex-wrap: wrap;
 }
 
 .ingredients__container p {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     padding-left: 2%;
     padding-right: 2%;
     padding-bottom: 2%;

@@ -11,7 +11,7 @@
 .meal__container {
     background-color: var(--primaryColor-lightTransparent);
     border-radius: 10px;
-    width: 90%;
+    width: 95%;
     height: 6rem;
     margin: 1.5%;
     display: flex;
@@ -28,8 +28,8 @@
 .meal__containerActive {
     background-color: var(--primaryColor);
     border-radius: 10px;
-    width: 90%;
-    height: 6rem;
+    width: 95%;
+    height: auto;
     margin: 1.5%;
     display: flex;
     justify-content: center;
@@ -43,18 +43,20 @@
 }
 
 .meal__containerActive h3 {
+    font-size: 1.1rem;
   margin: 5%;
 }
 
 .ingredients__container {
     display: flex;
-    width: 100%;
-    margin-left: 3%;
+    width: 95%;
+    margin-left: 2%;
+    margin-right: 2%;
     flex-wrap: wrap;
 }
 
 .ingredients__container p {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     padding-left: 2%;
     padding-right: 2%;
     padding-bottom: 2%;
@@ -121,6 +123,13 @@
  .arrowLeft {
      color: var(--primaryColor);
      height: 1.8rem;
+ }
+
+ .popUp__recipes__container {
+    width: 95%;
+    align-self: center;
+    display: flex;
+    flex-wrap: wrap;
  }
 
 .validatePopUp {

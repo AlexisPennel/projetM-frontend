@@ -14,6 +14,7 @@ const Login = () => {
 
 
     const handleSubmit = (e) => {
+        submitBtnRef.current.value = 'Loading ...'
         e.preventDefault();
 
 
@@ -26,7 +27,6 @@ const Login = () => {
 
             api.post("/api/auth/login", data)
                 .then((res) => {
-                    submitBtnRef.current.value = 'Loading ...'
                     localStorage.setItem('token', res.data.token)
                     let isConnected = true;
                     localStorage.setItem('isConnected', JSON.stringify(isConnected));

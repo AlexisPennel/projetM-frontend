@@ -17,11 +17,13 @@ const Dashboard = () => {
     const navigate = useNavigate();
     const [recipes, setRecipes] = useState([]);
     const [addRecipeDisplay, setAddRecipeDisplay] = useState(false);
+    const [loading, setLoading] = useState(true);
 
 
     useEffect(() => {
         api.get("/api/recipes")
             .then((recipes) => {
+                setLoading(false)
                 setRecipes(recipes.data)
             })
     }, [])
@@ -54,6 +56,7 @@ const Dashboard = () => {
                         <h2> My recipes</h2>
                     </header>
                     <div className={styles.recipesCards__container}>
+                        {loading && <p>Loading, please wait ...</p>}
                         {recipes.map((recipes, index) => (
                             <RecipesCard recipes={recipes} key={index} />
                         ))}
@@ -66,6 +69,7 @@ const Dashboard = () => {
                         <div className={styles.number__container}>{number2}</div>
                         <h2>My plan</h2>
                     </header>
+                    {loading && <p>Loading, please wait ...</p>}
                     <button className={styles.buttons} onClick={createPlan}>Create a plan +</button>
                 </section>
                 <section className={styles.section__container}>
