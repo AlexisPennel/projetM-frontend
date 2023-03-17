@@ -48,11 +48,10 @@ const Dashboard = () => {
 
 
     const handleLogout = () => {
-        const isConnected = false
-        localStorage.setItem('isConnected', JSON.stringify(isConnected));
+        localStorage.removeItem('tokenMFP');
         setTimeout(() => {
             navigate('/')
-        }, "200");
+        }, "500");
     };
 
 

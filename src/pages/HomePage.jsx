@@ -5,7 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { fa1 } from '@fortawesome/free-solid-svg-icons'
 import { fa2 } from '@fortawesome/free-solid-svg-icons'
 import { fa3 } from '@fortawesome/free-solid-svg-icons'
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const number1 = <FontAwesomeIcon icon={fa1} className={styles.numbers} />
 const number2 = <FontAwesomeIcon icon={fa2} className={styles.numbers} />
@@ -14,6 +15,15 @@ const number3 = <FontAwesomeIcon icon={fa3} className={styles.numbers} />
 const HomePage = () => {
     const [displayLogin, setDisplayLogin] = useState(true);
     const [displaySignUp, setDisplaySignUp] = useState(false);
+    const navigate = useNavigate()
+    const token = localStorage.getItem('tokenMFP');
+
+
+    useEffect(() => {
+        if (token) {
+            navigate('/dashboard')
+        }
+    }, [navigate, token])
 
 
     const handleLogin = () => {

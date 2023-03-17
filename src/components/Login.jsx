@@ -28,13 +28,11 @@ const Login = () => {
 
             api.post("/api/auth/login", data)
                 .then((res) => {
-                    localStorage.setItem('token', res.data.token)
-                    let isConnected = true;
-                    localStorage.setItem('isConnected', JSON.stringify(isConnected));
+                    localStorage.setItem('tokenMFP', res.data.token)
                     setLoading(false)
                     setTimeout(() => {
                         navigate('/dashboard')
-                    }, "200");
+                    }, "500");
                 })
                 .catch((res) => {
                     setLoading(false)
@@ -61,8 +59,8 @@ const Login = () => {
                 <label>
                     <input type="password" className={isError ? styles.inputError : null} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
                 </label>
-                <input type="submit" value='submit' className={styles.submitBtn} />
                 {loading && <ThreeDots color="#56A12A" />}
+                <input type="submit" value='submit' className={styles.submitBtn} />
             </form>
             <p className={styles.error}>{error}</p>
         </div>
