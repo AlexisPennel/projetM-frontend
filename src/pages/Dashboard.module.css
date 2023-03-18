@@ -1,5 +1,6 @@
 .page__container {
     width: 100vw;
+    min-height: 100vh;
     background-color: #000000b4;
     backdrop-filter: blur(2px);
 }

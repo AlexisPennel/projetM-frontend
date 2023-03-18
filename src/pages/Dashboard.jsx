@@ -21,6 +21,7 @@ const Dashboard = () => {
     const [loading, setLoading] = useState(true);
 
     // variables plats du jour 
+    // eslint-disable-next-line no-unused-vars
     const [planData, setPlanData] = useState([{}]);
     const [breakfast, setBreakfast] = useState('');
     const [breakfastName, setBreakfastName] = useState('');
@@ -36,6 +37,7 @@ const Dashboard = () => {
     useEffect(() => {
         api.get("/api/recipes")
             .then((response) => {
+                setRecipeError(false)
                 setLoading(false)
                 console.log(response.data)
                 setRecipeData(response.data)
@@ -128,10 +130,13 @@ const Dashboard = () => {
         setAddRecipeDisplay(!addRecipeDisplay);
     };
 
+    const seeMyPlan = () => {
+        navigate('/plan')
+    };
+
     const createPlan = () => {
         navigate('/plan/createplan')
     };
-
 
     const handleLogout = () => {
         localStorage.removeItem('tokenMFP');
@@ -183,7 +188,9 @@ const Dashboard = () => {
                             </div>
                         </div>
                     }
-                    <button className={styles.buttons} onClick={createPlan}>Create a plan +</button>
+                    {breakfastName ? <button className={styles.buttons} onClick={seeMyPlan}>See my plan</button> :
+                        <button className={styles.buttons} onClick={createPlan}>Create a plan +</button>
+                    }
                 </section>
                 <section className={styles.section__container}>
                     <header className={styles.sectionTitle__container}>
