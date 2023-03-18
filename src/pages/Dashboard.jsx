@@ -4,15 +4,9 @@ import styles from './Dashboard.module.css';
 import api from '../api';
 import RecipesCard from '../components/RecipesCard';
 import AddRecipe from '../components/AddRecipe';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { fa1 } from '@fortawesome/free-solid-svg-icons'
-import { fa2 } from '@fortawesome/free-solid-svg-icons'
-import { fa3 } from '@fortawesome/free-solid-svg-icons'
 import { ThreeDots } from 'react-loader-spinner';
 import Button from '../components/Button';
-const number1 = <FontAwesomeIcon icon={fa1} className={styles.numbers} />
-const number2 = <FontAwesomeIcon icon={fa2} className={styles.numbers} />
-const number3 = <FontAwesomeIcon icon={fa3} className={styles.numbers} />
+
 
 const Dashboard = () => {
     const navigate = useNavigate();
@@ -54,7 +48,8 @@ const Dashboard = () => {
         api.get("/api/plans")
             .then((response) => {
                 setPlanData(response.data[0])
-
+                localStorage.setItem('planId', response.data[0]._id)
+                console.log(localStorage)
                 if (currentDay === 1) {
                     setBreakfast(response.data[0].mondayBreakfast)
                     setBreakfastName(recipeData.find(element => element._id === breakfast).name)
@@ -121,6 +116,9 @@ const Dashboard = () => {
                 setLoading(false)
             })
             .catch(error => {
+                setBreakfastName('No plan yet');
+                setLunchName("No plan yet");
+                setDinnerName('No plan yet');
                 return
             });
     }, [breakfast, breakfastName, lunchName, dinnerName, currentDay, dinner, lunch, recipeData]);
@@ -137,6 +135,21 @@ const Dashboard = () => {
 
     const createPlan = () => {
         navigate('/plan/createplan')
+    };
+
+    const deleteAndCreate = () => {
+        if (window.confirm("Are you sure to delete your plan ?")) {
+            const id = localStorage.getItem('planId');
+            api.delete(`api/plans/${id}`)
+                .then((response) => {
+                    navigate('/plan/createplan')
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        } else {
+            return console.log('cancel')
+        }
     };
 
     const handleLogout = () => {
@@ -162,7 +175,9 @@ const Dashboard = () => {
                             ))
                         }
                     </div>
-                    <Button content={'Add recipe +'} fonction={addRecipe} />
+                    <div className={styles.btn__container}>
+                        <Button content={'Add recipe +'} fonction={addRecipe} />
+                    </div>
                     {addRecipeDisplay && <AddRecipe />}
                 </section>
                 <section className={styles.section__container}>
@@ -186,16 +201,31 @@ const Dashboard = () => {
                             </div>
                         </div>
                     }
-                    {breakfastName ? <Button content={'See my plan'} fonction={seeMyPlan} /> :
-                        <Button content={'Create a plan +'} fonction={createPlan} />
+                    {breakfastName === 'No plan yet' ?
+                        <div className={styles.btn__container}>
+                            <Button content={'Create a plan +'} fonction={createPlan} />
+                        </div>
+                        : <div className={styles.btn__wrapper}>
+                            <div className={styles.btn__container}>
+                                <Button content={'Delete and create'} fonction={deleteAndCreate} color={'light'} />
+                            </div>
+                            <div className={styles.btn__container}>
+                                <Button content={'See my plan'} fonction={seeMyPlan} />
+                            </div>
+                        </div>
+
                     }
+
                 </section>
                 <section className={styles.section__container}>
                     <header className={styles.sectionTitle__container}>
                         <h2>My shopping list</h2>
                     </header>
                 </section>
-                <Button content={'Logout'} fonction={handleLogout} color={'light'} />
+                <div className={styles.btn__container__logout}>
+
+                    <Button content={'Logout'} fonction={handleLogout} color={'light'} />
+                </div>
             </div >
         </div >
     );

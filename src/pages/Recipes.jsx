@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import api from '../api';
 import AddRecipe from '../components/AddRecipe';
 import styles from './Recipes.module.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { ThreeDots } from 'react-loader-spinner';
 import Goback from '../components/Goback';
+import Button from '../components/Button';
 
-const arrowLeft = <FontAwesomeIcon icon={faArrowLeft} className={styles.arrowLeft} />
 
 const Recipes = () => {
     const [recipeData, setRecipeData] = useState(null);
@@ -59,8 +57,12 @@ const Recipes = () => {
                     </div>
                 </div>
                 <div className={styles.btn__container}>
-                    <div className={styles.deleteBtn} onClick={handleDelete}> Delete </div>
-                    <div className={styles.editBtn} onClick={handleEdit}> Edit </div>
+                    <div className={styles.btn__box}>
+                        <Button color={'light'} content={'Delete'} fonction={handleDelete} />
+                    </div>
+                    <div className={styles.btn__box}>
+                        <Button content={'Edit'} fonction={handleEdit} />
+                    </div>
                 </div>
                 {edit && <AddRecipe action='put' id={id} />}
             </div>

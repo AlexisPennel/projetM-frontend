@@ -3,6 +3,7 @@ import styles from './AddRecipe.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import api from '../api';
+import Button from './Button';
 
 const editSvg = <FontAwesomeIcon icon={faPenToSquare} />
 
@@ -104,14 +105,18 @@ const AddRecipe = ({ action, id }) => {
                         ))}
                     </div>
                 </div>
-                <div className={styles.btn__container}>
-                    <div className={styles.resetBtn} onClick={handleReset}> Reset </div>
-                    <div className={styles.submitBtn} onClick={handleSave}> Save recipe </div>
-                </div>
-                {saveValidation && <p>recipe saved</p>}
-                {saveError && <p>An Error occured </p>}
-                {formatError && <p>To save a recipe, add a name and at least 1 ingredient</p>}
             </form>
+            <div className={styles.btn__wrapper}>
+                <div className={styles.btn__container}>
+                    <Button fonction={handleReset} content={"Reset"} color={'light'} />
+                </div>
+                <div className={styles.btn__container}>
+                    <Button fonction={handleSave} content={'Save'} />
+                </div>
+            </div>
+            {saveValidation && <p>recipe saved</p>}
+            {saveError && <p>An Error occured </p>}
+            {formatError && <p>To save a recipe, add a name and at least 1 ingredient</p>}
         </div>
     );
 };

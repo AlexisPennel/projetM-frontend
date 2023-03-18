@@ -46,7 +46,7 @@
     width: 7rem;
     height: auto;
     background: rgb(117,166,158);
-    background: linear-gradient(90deg, rgba(117, 166, 158, 0.699) 0%, rgba(149, 196, 189, 0.5) 38%);
+    background: linear-gradient(90deg, rgba(117, 166, 158, 0.979) 0%, rgb(149, 196, 189) 38%);
     box-shadow: -1px 0px 10px #00000033;
     border-radius: 10px;
     display: flex;
@@ -85,5 +85,22 @@
 .recipesCards__container {
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 3%;
+}
+
+.btn__container {
+    width: 45%;
+    margin-top: 7%;
+    margin-left: 3%;
+    margin-bottom: 7%;
+}
+
+.btn__container__logout {
+   width: 50%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    align-self: center;
+}
+
+.btn__wrapper {
+    display: flex;
 }

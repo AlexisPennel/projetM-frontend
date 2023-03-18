@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 import api from '../api';
 import DaysBox from '../components/DaysBox';
 import styles from './CreatePlan.module.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { ThreeDots } from 'react-loader-spinner';
+import Goback from '../components/Goback';
+import Button from '../components/Button';
+import { Navigate, useNavigate } from 'react-router-dom';
 
-const arrowLeft = <FontAwesomeIcon icon={faArrowLeft} className={styles.arrowLeft} />
+
 
 const MyPlan = () => {
     const [recipes, setRecipes] = useState([]);
@@ -15,6 +15,7 @@ const MyPlan = () => {
     const [loading, setLoading] = useState(true);
     const [loadingPost, setLoadingPost] = useState(false);
     const errorRef = useRef(null)
+    const navigate = useNavigate();
 
     useEffect(() => {
         api.get("/api/recipes")
@@ -31,6 +32,7 @@ const MyPlan = () => {
             .then(() => {
                 setError(false);
                 setLoadingPost(false)
+                navigate('/dashboard')
             })
             .catch((error) => {
                 setLoadingPost(false)
@@ -78,10 +80,7 @@ const MyPlan = () => {
 
     return (
         <div className={styles.container}>
-            <Link to={'/dashboard'} className={styles.goBack__container}>
-                <div>{arrowLeft}</div>
-                <p>Go back</p>
-            </Link>
+            <Goback link={'/dashboard'} />
             {loading ? <ThreeDots color="#56A12A" /> :
                 <section>
                     <h1>Select all your meals and click on 'generate plan'</h1>
@@ -96,7 +95,9 @@ const MyPlan = () => {
             }
             {error === '' ? null : <p ref={errorRef}>{error}</p>}
             {loadingPost && <ThreeDots color="#56A12A" />}
-            <button className={styles.button} onClick={generatePlan}>Generate plan</button>
+            <div className={styles.btn__container}>
+                <Button fonction={generatePlan} content={'Generate plan'} />
+            </div>
         </div >
     );
 };

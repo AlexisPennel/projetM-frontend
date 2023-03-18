@@ -1,6 +1,6 @@
 .container {
     background: rgb(117,166,158);
-    background: linear-gradient(90deg, rgba(117, 166, 158, 0.699) 0%, rgba(149, 196, 189, 0.5) 38%);
+    background: linear-gradient(90deg, rgb(117, 166, 158) 0%, rgb(149, 196, 189) 38%);
     box-shadow: -1px 0px 10px #00000033;
     height: auto;
     width: 10rem;
@@ -61,7 +61,7 @@
     margin: 5%;
     width: auto;
     background-color: var(--lightShades-Transparent);
-    border-radius: 10px;
+    border-radius: 5px;
     margin-right: 1.5%;
     margin-left: 1.5%;
     color: black;

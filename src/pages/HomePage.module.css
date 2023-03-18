@@ -75,12 +75,15 @@ h1 {
 }
 
 .button__container {
-    width: 80%;
+    width: 45%;
     display: flex;
     justify-content: space-evenly;
 }
-
-
+.btn__wrapper{ 
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+}
 
 .button__login {
     width: 8rem;

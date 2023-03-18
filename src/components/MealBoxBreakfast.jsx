@@ -3,6 +3,8 @@ import ChooseRecipe from './ChooseRecipe';
 import styles from './MealBox.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import Button from '../components/Button';
+import AddRecipe from '../components/AddRecipe'
 
 const arrowLeft = <FontAwesomeIcon icon={faArrowLeft} className={styles.arrowLeft} />
 
@@ -10,10 +12,11 @@ const MealBoxBreakfast = ({ data, day }) => {
     const [popUpDisplay, setPopUpDisplay] = useState(false);
     const [breafastSelected, setBreakfastSelected] = useState(false);
     const [recipedata, setRecipeData] = useState('');
-    const [loading, setLoading] = useState(true);
+    const [addRecipeDisplay, setAddRecipeDisplay] = useState(false)
 
     const showPopUp = () => {
         setPopUpDisplay(true);
+        window.scrollTo(0, 0)
     }
 
     const validateSelect = () => {
@@ -25,6 +28,10 @@ const MealBoxBreakfast = ({ data, day }) => {
         setBreakfastSelected(true);
         setRecipeData(data.find(element => element._id === breakfastId))
     }
+
+    const addRecipe = () => {
+        setAddRecipeDisplay(!addRecipeDisplay);
+    };
 
     const Goback = () => {
         setPopUpDisplay(false);
@@ -57,7 +64,15 @@ const MealBoxBreakfast = ({ data, day }) => {
                         <ChooseRecipe key={index} recipes={recipes} />
                     ))};
                 </div>
-                <button onClick={validateSelect} className={styles.validatePopUp}>validate</button>
+                {addRecipeDisplay && <AddRecipe />}
+                <div className={styles.btn__wrapper}>
+                    <div className={styles.btn__container}>
+                        <Button content={'Add recipe'} fonction={addRecipe} color={'light'} />
+                    </div>
+                    <div className={styles.btn__container}>
+                        <Button content={'Validate'} fonction={validateSelect} />
+                    </div>
+                </div>
             </div>}
         </>
     );
