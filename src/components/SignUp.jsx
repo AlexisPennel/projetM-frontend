@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styles from './LoginSignUp.module.css'
-import { useNavigate } from 'react-router-dom';
 import api from '../api';
 import checkData from '../lib/checkData';
 import { ThreeDots } from 'react-loader-spinner';
@@ -12,7 +11,7 @@ const SignUp = () => {
     const [error, setError] = useState('');
     const [isError, setIsError] = useState(false);
     const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
+    const [message, setMessage] = useState(false);
 
 
     const handleSubmit = (e) => {
@@ -26,13 +25,9 @@ const SignUp = () => {
             }
 
             api.post('/api/auth/signup', data)
-                .then(() => {
-                    let isConnected = true;
-                    localStorage.setItem('isConnected', JSON.stringify(isConnected));
+                .then((res) => {
+                    setMessage("user created, click now on login !")
                     setLoading(false)
-                    setTimeout(() => {
-                        navigate('/dashboard')
-                    }, "200");
                 })
                 .catch((error) => {
                     setLoading(false)
@@ -57,8 +52,9 @@ const SignUp = () => {
                 <label>
                     <input type="password" className={isError ? styles.inputError : null} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
                 </label>
-                <input type="submit" value='submit' className={styles.submitBtn} />
+                {message && <p>{message}</p>}
                 {loading && <ThreeDots color="#56A12A" />}
+                <input type="submit" value='submit' className={styles.submitBtn} />
             </form>
             <p className={styles.error}>{error}</p>
         </div>

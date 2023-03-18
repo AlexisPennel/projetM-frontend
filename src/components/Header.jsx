@@ -10,17 +10,17 @@ const userSvg = <FontAwesomeIcon icon={faUser} className={styles.userSvg} />
 const Header = () => {
     const navigate = useNavigate();
 
-    const isConnected = localStorage.getItem('isConnected');
+    const token = localStorage.getItem('tokenMFP');
 
     const clickUser = () => {
-        if (isConnected === null || isConnected === 'false') {
+        if (token === null) {
             return window.scrollTo({
                 top: 1000,
                 behavior: 'smooth'
             });
         }
 
-        if (isConnected === 'true') {
+        if (token) {
             return navigate('/dashboard')
         }
     };

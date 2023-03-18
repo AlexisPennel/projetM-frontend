@@ -1,5 +1,6 @@
 .page__container {
     width: 100vw;
+    min-height: 100vh;
     background-color: #000000b4;
     backdrop-filter: blur(2px);
 }
@@ -19,6 +20,10 @@
     margin-bottom: 5%;
 }
 
+.section__container p {
+    margin-left: 2%;
+}
+
 .section__container header {
     width: 85%;
     display: flex;
@@ -33,6 +38,35 @@
     font-weight: 400;
 }
 
+.plan__container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.planRecipe__container {
+    width: 7rem;
+    height: auto;
+    background: rgb(217, 251, 197);
+    background: linear-gradient(266deg, rgb(217, 251, 197) 0%, rgba(140,209,99,1) 25%, rgba(86,161,42,1) 100%);
+    box-shadow: -1px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.planRecipe__container h3 {
+    color: var(--primaryColor-dark);
+}
+
+.planRecipe__container p {
+    font-size: 1.2rem;
+    margin: 0;
+    margin-bottom: 5%;
+    text-align: center;
+    color: whitesmoke;
+}
 
 .number__container{
     height:1rem;
