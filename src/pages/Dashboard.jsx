@@ -9,6 +9,7 @@ import { fa1 } from '@fortawesome/free-solid-svg-icons'
 import { fa2 } from '@fortawesome/free-solid-svg-icons'
 import { fa3 } from '@fortawesome/free-solid-svg-icons'
 import { ThreeDots } from 'react-loader-spinner';
+import Button from '../components/Button';
 const number1 = <FontAwesomeIcon icon={fa1} className={styles.numbers} />
 const number2 = <FontAwesomeIcon icon={fa2} className={styles.numbers} />
 const number3 = <FontAwesomeIcon icon={fa3} className={styles.numbers} />
@@ -45,8 +46,8 @@ const Dashboard = () => {
             })
             .catch(error => {
                 console.log(error);
+                setRecipeError(true)
             });
-        setRecipeError(true)
     }, []);
 
     useEffect(() => {
@@ -151,53 +152,50 @@ const Dashboard = () => {
                 <h1>Dashboard</h1>
                 <section className={styles.section__container}>
                     <header className={styles.sectionTitle__container}>
-                        <div className={styles.number__container}>{number1}</div>
                         <h2> My recipes</h2>
                     </header>
                     <div className={styles.recipesCards__container}>
-                        {loading && <ThreeDots color="#56A12A" />}
+                        {loading && <ThreeDots color="#7B888E" />}
                         {recipeError ? <p>Recipe not found, add new recipe</p> :
                             recipeData.map((recipes, index) => (
                                 <RecipesCard recipes={recipes} key={index} />
                             ))
                         }
                     </div>
-                    <button className={styles.buttons} onClick={addRecipe}>Add recipe +</button>
+                    <Button content={'Add recipe +'} fonction={addRecipe} />
                     {addRecipeDisplay && <AddRecipe />}
                 </section>
                 <section className={styles.section__container}>
                     <header >
-                        <div className={styles.number__container}>{number2}</div>
                         <h2>My plan</h2>
                     </header>
                     <p>Today's meals</p>
-                    {loading ? <ThreeDots color="#56A12A" /> :
+                    {loading ? <ThreeDots color="#7B888E" /> :
                         <div className={styles.plan__container}>
                             <div className={styles.planRecipe__container}>
                                 <h3>Breakfast</h3>
-                                {breakfastName ? <p>{breakfastName}</p> : <ThreeDots color="#56A12A" />}
+                                {breakfastName ? <p>{breakfastName}</p> : <ThreeDots color="#7B888E" />}
                             </div>
                             <div className={styles.planRecipe__container}>
                                 <h3>Lunch</h3>
-                                {lunchName ? <p>{lunchName}</p> : <ThreeDots color="#56A12A" />}
+                                {lunchName ? <p>{lunchName}</p> : <ThreeDots color="#7B888E" />}
                             </div>
                             <div className={styles.planRecipe__container}>
                                 <h3>Dinner</h3>
-                                {dinnerName ? <p>{dinnerName}</p> : <ThreeDots color="#56A12A" />}
+                                {dinnerName ? <p>{dinnerName}</p> : <ThreeDots color="#7B888E" />}
                             </div>
                         </div>
                     }
-                    {breakfastName ? <button className={styles.buttons} onClick={seeMyPlan}>See my plan</button> :
-                        <button className={styles.buttons} onClick={createPlan}>Create a plan +</button>
+                    {breakfastName ? <Button content={'See my plan'} fonction={seeMyPlan} /> :
+                        <Button content={'Create a plan +'} fonction={createPlan} />
                     }
                 </section>
                 <section className={styles.section__container}>
                     <header className={styles.sectionTitle__container}>
-                        <div className={styles.number__container}>{number3}</div>
                         <h2>My shopping list</h2>
                     </header>
                 </section>
-                <button className={styles.logout__btn} onClick={handleLogout}>Logout</button>
+                <Button content={'Logout'} fonction={handleLogout} color={'light'} />
             </div >
         </div >
     );

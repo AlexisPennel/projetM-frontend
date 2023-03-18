@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import api from '../api';
 import checkData from '../lib/checkData';
 import { ThreeDots } from 'react-loader-spinner';
+import Button from './Button';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -60,7 +61,7 @@ const Login = () => {
                     <input type="password" className={isError ? styles.inputError : null} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
                 </label>
                 {loading && <ThreeDots color="#56A12A" />}
-                <input type="submit" value='submit' className={styles.submitBtn} />
+                <Button type={'submit'} content={"Submit"} />
             </form>
             <p className={styles.error}>{error}</p>
         </div>

@@ -7,6 +7,7 @@ import { fa2 } from '@fortawesome/free-solid-svg-icons'
 import { fa3 } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Button from "../components/Button";
 
 const number1 = <FontAwesomeIcon icon={fa1} className={styles.numbers} />
 const number2 = <FontAwesomeIcon icon={fa2} className={styles.numbers} />
@@ -68,8 +69,8 @@ const HomePage = () => {
                     </div>
                     <p> Easily plan your weekly meals and get all the ingredients.<br />Start meal planning now !</p>
                     <div className={styles.button__container}>
-                        <button className={styles.button__login} onClick={handleLogin}>Login</button>
-                        <button className={styles.button__signUp} onClick={handleSignUp}>SignUp</button>
+                        <Button color={'light'} fonction={handleLogin} content={'Login'} />
+                        <Button fonction={handleSignUp} content={'Sign up'} />
                     </div>
                 </div>
                 {displayLogin && <Login />}

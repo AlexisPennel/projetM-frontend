@@ -7,11 +7,19 @@ font-family: 'Quicksand', sans-serif; */
     --fontFam1: 'Oswald', sans-serif;
     --fontFam2: 'Quicksand', sans-serif;
     --darkColor:  #1E2022;
-    --primaryColor-light: #8CD163;
+    --primaryColor-light: #84C675;
     --primaryColor-lightTransparent: #8bd16354;
     --primaryColor: #56A12A;
-    --primaryColor-dark:#336019;
+    --primaryColor-dark:#295C35;
     color: var(--fontColor);
+
+    --lightShades:#F7F6F6;
+    --lightShades-Transparent:#f7f6f69d;
+    --lightAccent:#75A69E;
+    --lightAccent-Transparent:#75a69e8c;
+    --mainBrandColor:#56A120;
+    --darkAccent:#7B888E;
+    --darkShades: #1E2022;
 }
 
 body, main {
@@ -43,12 +51,12 @@ footer {
 
 h1, h2 {
     font-family: var(--fontFam1);
-    color: var(--fontColor);
+    color: var(--mainBrandColor);
 }
 
 p {
     font-family: var(--fontFam2);
-    color: var(--fontColor);
+    color: var(--darkAccent);
 }
 
 h1 {
