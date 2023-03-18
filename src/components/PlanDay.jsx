@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import api from '../api';
 import styles from './PlanDay.module.css';
+import { ThreeDots } from 'react-loader-spinner';
 
 
 const PlanDay = ({ day }) => {
@@ -73,100 +75,9 @@ const PlanDay = ({ day }) => {
         }
     }, [planData])
 
-
-
-
-
-
     if (!planData || !recipesData) {
-        return <p>Loading....</p>
+        return <ThreeDots color="#56A12A" />
     }
-    // api.get("/api/recipes")
-    //     .then((response) => {
-    //         setRecipesData(response.data)
-    //     })
-    //     .catch((error) => {
-    //         console.log(error)
-    //     })
-
-    // api.get("/api/plans")
-    //     .then((response) => {
-    //         setPlanData(response.data[0])
-    //         if (day === "Monday") {
-    //             const breakfastFind = recipesData.find(element => element._id === planData.mondayBreakfast)
-    //             setBreakfastData(breakfastFind)
-    //             setLunchData(recipesData.find(element => element._id === planData.mondayLunch))
-    //             setDinnerData(recipesData.find(element => element._id === planData.mondayDinner))
-    //         };
-    //     })
-
-
-    // useEffect(() => {
-    //     if (recipesData === null && planData === null) {
-    //         console.log('no')
-    //     } else {
-    //         getdata()
-    //     }
-    // }, [planData])
-    // getdata()
-    // if (day === 'Monday') {
-    //     setBreakfastData(recipesData.find(element => element._id === planData.mondayBreakfast))
-    // }
-
-
-
-
-
-
-
-    // useEffect(() => {
-    //     if (day === "Monday") {
-    //         setBreakfastData(recipesData.find(element => element._id === planData.mondayBreakfast))
-    //         setLunchData(recipesData.find(element => element._id === planData.mondayLunch))
-    //         // setDinnerData(recipesData.find(element => element._id === planData.mondayDinner))
-    //         return
-    //     }
-
-    //     // if (day === "Tuesday") {
-    //     //     setBreakfastData(recipesData.find(element => element._id === planData.tuesdayBreakfast))
-    //     //     setLunchData(recipesData.find(element => element._id === planData.tuesdayLunch))
-    //     //     setDinnerData(recipesData.find(element => element._id === planData.tuesdayDinner))
-    //     // }
-
-    //     // if (day === "Wednesday") {
-    //     //     setBreakfastData(recipesData.find(element => element._id === planData.wednesdayBreakfast))
-    //     //     setLunchData(recipesData.find(element => element._id === planData.wednesdayLunch))
-    //     //     setDinnerData(recipesData.find(element => element._id === planData.wednesdayDinner))
-    //     // }
-
-    //     // if (day === "Thursday") {
-    //     //     setBreakfastData(recipesData.find(element => element._id === planData.thursdayBreakfast))
-    //     //     setLunchData(recipesData.find(element => element._id === planData.thursdayLunch))
-    //     //     setDinnerData(recipesData.find(element => element._id === planData.thursdayDinner))
-    //     // }
-
-    //     // if (day === "Friday") {
-    //     //     setBreakfastData(recipesData.find(element => element._id === planData.fridayBreakfast))
-    //     //     setLunchData(recipesData.find(element => element._id === planData.fridayLunch))
-    //     //     setDinnerData(recipesData.find(element => element._id === planData.fridayDinner))
-    //     // }
-
-    //     // if (day === "Saturday") {
-    //     //     setBreakfastData(recipesData.find(element => element._id === planData.saturdayBreakfast))
-    //     //     setLunchData(recipesData.find(element => element._id === planData.saturdayLunch))
-    //     //     setDinnerData(recipesData.find(element => element._id === planData.saturdayDinner))
-    //     // }
-
-    //     // if (day === "Sunday") {
-    //     //     setBreakfastData(recipesData.find(element => element._id === planData.sundayBreakfast))
-    //     //     setLunchData(recipesData.find(element => element._id === planData.sundayLunch))
-    //     //     setDinnerData(recipesData.find(element => element._id === planData.sundayDinner))
-    //     // }
-
-
-    // }, [])
-    // console.log(breakfastData)
-    // console.log(lunchData)
 
     return (
         <div className={styles.container}>

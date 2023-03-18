@@ -145,7 +145,6 @@ const Dashboard = () => {
         }, "500");
     };
 
-
     return (
         <div className={styles.page__container}>
             <div className={styles.content}>
@@ -176,15 +175,15 @@ const Dashboard = () => {
                         <div className={styles.plan__container}>
                             <div className={styles.planRecipe__container}>
                                 <h3>Breakfast</h3>
-                                {breakfastName ? <p>{breakfastName}</p> : <p>You don't have any plan yet</p>}
+                                {breakfastName ? <p>{breakfastName}</p> : <ThreeDots color="#56A12A" />}
                             </div>
                             <div className={styles.planRecipe__container}>
                                 <h3>Lunch</h3>
-                                {lunchName ? <p>{lunchName}</p> : <p>You don't have any plan yet</p>}
+                                {lunchName ? <p>{lunchName}</p> : <ThreeDots color="#56A12A" />}
                             </div>
                             <div className={styles.planRecipe__container}>
                                 <h3>Dinner</h3>
-                                {dinnerName ? <p>{dinnerName}</p> : <p>You don't have any plan yet</p>}
+                                {dinnerName ? <p>{dinnerName}</p> : <ThreeDots color="#56A12A" />}
                             </div>
                         </div>
                     }
