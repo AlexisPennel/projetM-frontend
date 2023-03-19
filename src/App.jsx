@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard';
 import Recipes from './pages/Recipes';
 import CreatePlan from './pages/CreatePlan';
 import MyPlan from './pages/MyPlan';
+import ShoppingList from './pages/ShoppingList';
 
 
 const token = localStorage.getItem('tokenMFP');
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
             <Route path='recipes/:id' element={token === null ? <Navigate to={'/'} /> : <Recipes />} />
             <Route path='plan/' element={token === null ? <Navigate to={'/'} /> : <MyPlan />} />
             <Route path='plan/createplan' element={token === null ? <Navigate to={'/'} /> : <CreatePlan />} />
+            <Route path='shoppinglist' element={token === null ? <Navigate to={'/'} /> : <ShoppingList />} />
         </Route>
     )
 );

@@ -5,7 +5,7 @@ import styles from './CreatePlan.module.css'
 import { ThreeDots } from 'react-loader-spinner';
 import Goback from '../components/Goback';
 import Button from '../components/Button';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -31,8 +31,8 @@ const MyPlan = () => {
         api.post('/api/plans', data)
             .then(() => {
                 setError(false);
-                setLoadingPost(false)
-                navigate('/dashboard')
+                setLoadingPost(false);
+                navigate('/dashboard');
             })
             .catch((error) => {
                 setLoadingPost(false)

@@ -34,7 +34,6 @@ const Dashboard = () => {
             .then((response) => {
                 setRecipeError(false)
                 setLoading(false)
-                console.log(response.data)
                 setRecipeData(response.data)
                 return
             })
@@ -49,7 +48,6 @@ const Dashboard = () => {
             .then((response) => {
                 setPlanData(response.data[0])
                 localStorage.setItem('planId', response.data[0]._id)
-                console.log(localStorage)
                 if (currentDay === 1) {
                     setBreakfast(response.data[0].mondayBreakfast)
                     setBreakfastName(recipeData.find(element => element._id === breakfast).name)
@@ -152,6 +150,10 @@ const Dashboard = () => {
         }
     };
 
+    const seeMyList = () => {
+        navigate('/shoppinglist')
+    }
+
     const handleLogout = () => {
         localStorage.removeItem('tokenMFP');
         setTimeout(() => {
@@ -176,7 +178,7 @@ const Dashboard = () => {
                         }
                     </div>
                     <div className={styles.btn__container}>
-                        <Button content={'Add recipe +'} fonction={addRecipe} />
+                        <Button content={'Add recipe'} fonction={addRecipe} />
                     </div>
                     {addRecipeDisplay && <AddRecipe />}
                 </section>
@@ -203,7 +205,7 @@ const Dashboard = () => {
                     }
                     {breakfastName === 'No plan yet' ?
                         <div className={styles.btn__container}>
-                            <Button content={'Create a plan +'} fonction={createPlan} />
+                            <Button content={'Create a plan'} fonction={createPlan} />
                         </div>
                         : <div className={styles.btn__wrapper}>
                             <div className={styles.btn__container}>
@@ -221,6 +223,9 @@ const Dashboard = () => {
                     <header className={styles.sectionTitle__container}>
                         <h2>My shopping list</h2>
                     </header>
+                    <div className={styles.btn__container}>
+                        <Button content={'See my list'} fonction={seeMyList} />
+                    </div>
                 </section>
                 <div className={styles.btn__container__logout}>
 
