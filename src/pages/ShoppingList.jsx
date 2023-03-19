@@ -4,13 +4,16 @@ import React, { useEffect, useState } from 'react';
 import api from '../api';
 import styles from './ShoppingList.module.css'
 import { ThreeDots } from 'react-loader-spinner';
+import { Preview, print } from 'react-html2pdf';
+import Button from '../components/Button';
+import html2pdf from 'html2pdf.js';
 
 const ShoppingList = () => {
 
     const [planData, setPlanData] = useState(null);
     const [recipesData, setRecipesData] = useState(null);
     const [ingredientsArray, setIngredientsArray] = useState([]);
-    const [uniqueIngredients, setUniqueIngredients] = useState(null);
+    const [uniqueIngredients, setUniqueIngredients] = useState();
 
 
     useEffect(() => {
@@ -21,6 +24,7 @@ const ShoppingList = () => {
             .then(responses => {
                 setRecipesData(responses[0].data);
                 setPlanData(responses[1].data[0]);
+
             })
             .catch(error => {
                 console.error(error);
@@ -28,8 +32,11 @@ const ShoppingList = () => {
     }, [])
 
     useEffect(() => {
+        console.log('render')
         if (planData && recipesData) {
-            const mondayB = recipesData.find(element => element._id === planData.mondayBreakfast).ingredients
+            console.log(planData)
+            console.log(recipesData)
+            const mondayB = recipesData.find(element => element._id === planData.mondayBreakfast).ingredients;
             const mondayL = recipesData.find(element => element._id === planData.mondayLunch).ingredients
             const mondayD = recipesData.find(element => element._id === planData.mondayDinner).ingredients
             const tuesdayB = recipesData.find(element => element._id === planData.tuesdayBreakfast).ingredients
@@ -51,28 +58,43 @@ const ShoppingList = () => {
             const sundayL = recipesData.find(element => element._id === planData.sundayLunch).ingredients
             const sundayD = recipesData.find(element => element._id === planData.sundayDinner).ingredients
 
-            setIngredientsArray(ingredientsArray.concat(mondayB, mondayL, mondayD, tuesdayB, tuesdayL, tuesdayD, wednesdayB, wednesdayL, wednesdayD, thursdayB, thursdayL, thursdayD, fridayB, fridayL, fridayD, saturdayB, saturdayL, saturdayD, sundayB, sundayL, sundayD));
-            const uniqueArray = ingredientsArray.filter((item, index) => ingredientsArray.indexOf(item) === index)
-            setUniqueIngredients(uniqueArray)
+            let firstArray = ingredientsArray.concat(mondayB, mondayL, mondayD, tuesdayB, tuesdayL, tuesdayD, wednesdayB, wednesdayL, wednesdayD, thursdayB, thursdayL, thursdayD, fridayB, fridayL, fridayD, saturdayB, saturdayL, saturdayD, sundayB, sundayL, sundayD)
+            console.log(firstArray);
+            setIngredientsArray(firstArray.filter((item, index) => firstArray.indexOf(item) === index))
         }
     }, [planData])
 
-    const handleExportPdf = () => {
-
+    const generatePdf = () => {
+        const element = document.getElementById('pdf-content');
+        const options = {
+            margin: 0.5,
+            filename: 'MyShoppingList.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { dpi: 192, letterRendering: true },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+        };
+        html2pdf().set(options).from(element).save();
     };
 
-    if (!planData || !recipesData || !uniqueIngredients) {
+    if (!planData || !recipesData) {
         return <ThreeDots color="#56A12A" />
     }
 
     return (
-        <div className={styles.content} id="pdf-content">
+        <div className={styles.content}>
             <h1>My Shopping List</h1>
-            {uniqueIngredients.map((ingredient, index) => (
-                <p key={index}>{ingredient}</p>
-            ))}
-            <button onClick={handleExportPdf}>Export PDF</button>
-        </div>
+            <div className={styles.list__container} id='pdf-content'>
+                {ingredientsArray.map((ingredient, index) => (
+                    <div className={styles.ingredients__container}>
+                        <input type="checkbox" name="checkbox" />
+                        <p key={index}>{ingredient}</p>
+                    </div>
+                ))}
+            </div>
+            <div className={styles.btn__container}>
+                <Button fonction={generatePdf} content={'Export to PDF'} />
+            </div>
+        </div >
     );
 };
 
