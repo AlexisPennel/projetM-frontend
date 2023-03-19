@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import api from '../api';
 import styles from './ShoppingList.module.css'
 import { ThreeDots } from 'react-loader-spinner';
-import { Preview, print } from 'react-html2pdf';
 import Button from '../components/Button';
 import html2pdf from 'html2pdf.js';
 

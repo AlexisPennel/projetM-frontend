@@ -61,9 +61,12 @@
 }
 
 .planRecipe__container p {
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     margin: 0;
     margin-bottom: 15%;
+    width: 100%;
+    margin-left: 1%;
+    margin-right: 1%;
     text-align: center;
     color:var(--lightShades);
 }
