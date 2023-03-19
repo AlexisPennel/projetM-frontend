@@ -3,6 +3,7 @@ import styles from './LoginSignUp.module.css'
 import api from '../api';
 import checkData from '../lib/checkData';
 import { ThreeDots } from 'react-loader-spinner';
+import Button from './Button';
 
 
 const SignUp = () => {
@@ -54,7 +55,7 @@ const SignUp = () => {
                 </label>
                 {message && <p>{message}</p>}
                 {loading && <ThreeDots color="#56A12A" />}
-                <input type="submit" value='submit' className={styles.submitBtn} />
+                <Button type={'submit'} content={"Submit"} />
             </form>
             <p className={styles.error}>{error}</p>
         </div>

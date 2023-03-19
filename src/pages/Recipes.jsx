@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import api from '../api';
 import AddRecipe from '../components/AddRecipe';
 import styles from './Recipes.module.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { ThreeDots } from 'react-loader-spinner';
+import Goback from '../components/Goback';
+import Button from '../components/Button';
 
-const arrowLeft = <FontAwesomeIcon icon={faArrowLeft} className={styles.arrowLeft} />
 
 const Recipes = () => {
-    const [recipeData, setRecipeData] = useState('');
-    const [recipeIngredient, setRecipeIngredients] = useState([]);
+    const [recipeData, setRecipeData] = useState(null);
+    const [recipeIngredient, setRecipeIngredients] = useState(null);
     const [edit, setEdit] = useState(false)
     let { id } = useParams();
     const navigate = useNavigate();
@@ -40,12 +40,13 @@ const Recipes = () => {
             })
     }
 
+    if (!recipeData || !recipeIngredient) {
+        return <ThreeDots color="#56A12A" />
+    }
+
     return (
         <div className={styles.container}>
-            <Link to={'/dashboard'} className={styles.goBack__container}>
-                <div>{arrowLeft}</div>
-                <p>Go back</p>
-            </Link>
+            <Goback link={'/dashboard'} />
             <div className={styles.recipe__container}>
                 <div className={styles.recipeCard__container}>
                     <h1>{recipeData.name}</h1>
@@ -56,8 +57,12 @@ const Recipes = () => {
                     </div>
                 </div>
                 <div className={styles.btn__container}>
-                    <div className={styles.deleteBtn} onClick={handleDelete}> Delete </div>
-                    <div className={styles.editBtn} onClick={handleEdit}> Edit </div>
+                    <div className={styles.btn__box}>
+                        <Button color={'light'} content={'Delete'} fonction={handleDelete} />
+                    </div>
+                    <div className={styles.btn__box}>
+                        <Button content={'Edit'} fonction={handleEdit} />
+                    </div>
                 </div>
                 {edit && <AddRecipe action='put' id={id} />}
             </div>

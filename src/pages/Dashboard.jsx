@@ -4,14 +4,9 @@ import styles from './Dashboard.module.css';
 import api from '../api';
 import RecipesCard from '../components/RecipesCard';
 import AddRecipe from '../components/AddRecipe';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { fa1 } from '@fortawesome/free-solid-svg-icons'
-import { fa2 } from '@fortawesome/free-solid-svg-icons'
-import { fa3 } from '@fortawesome/free-solid-svg-icons'
 import { ThreeDots } from 'react-loader-spinner';
-const number1 = <FontAwesomeIcon icon={fa1} className={styles.numbers} />
-const number2 = <FontAwesomeIcon icon={fa2} className={styles.numbers} />
-const number3 = <FontAwesomeIcon icon={fa3} className={styles.numbers} />
+import Button from '../components/Button';
+
 
 const Dashboard = () => {
     const navigate = useNavigate();
@@ -39,21 +34,20 @@ const Dashboard = () => {
             .then((response) => {
                 setRecipeError(false)
                 setLoading(false)
-                console.log(response.data)
                 setRecipeData(response.data)
                 return
             })
             .catch(error => {
                 console.log(error);
+                setRecipeError(true)
             });
-        setRecipeError(true)
     }, []);
 
     useEffect(() => {
         api.get("/api/plans")
             .then((response) => {
                 setPlanData(response.data[0])
-
+                localStorage.setItem('planId', response.data[0]._id)
                 if (currentDay === 1) {
                     setBreakfast(response.data[0].mondayBreakfast)
                     setBreakfastName(recipeData.find(element => element._id === breakfast).name)
@@ -120,6 +114,9 @@ const Dashboard = () => {
                 setLoading(false)
             })
             .catch(error => {
+                setBreakfastName('No plan yet');
+                setLunchName("No plan yet");
+                setDinnerName('No plan yet');
                 return
             });
     }, [breakfast, breakfastName, lunchName, dinnerName, currentDay, dinner, lunch, recipeData]);
@@ -138,6 +135,25 @@ const Dashboard = () => {
         navigate('/plan/createplan')
     };
 
+    const deleteAndCreate = () => {
+        if (window.confirm("Are you sure to delete your plan ?")) {
+            const id = localStorage.getItem('planId');
+            api.delete(`api/plans/${id}`)
+                .then((response) => {
+                    navigate('/plan/createplan')
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        } else {
+            return console.log('cancel')
+        }
+    };
+
+    const seeMyList = () => {
+        navigate('/shoppinglist')
+    }
+
     const handleLogout = () => {
         localStorage.removeItem('tokenMFP');
         setTimeout(() => {
@@ -151,53 +167,70 @@ const Dashboard = () => {
                 <h1>Dashboard</h1>
                 <section className={styles.section__container}>
                     <header className={styles.sectionTitle__container}>
-                        <div className={styles.number__container}>{number1}</div>
                         <h2> My recipes</h2>
                     </header>
                     <div className={styles.recipesCards__container}>
-                        {loading && <ThreeDots color="#56A12A" />}
+                        {loading && <ThreeDots color="#7B888E" />}
                         {recipeError ? <p>Recipe not found, add new recipe</p> :
                             recipeData.map((recipes, index) => (
                                 <RecipesCard recipes={recipes} key={index} />
                             ))
                         }
                     </div>
-                    <button className={styles.buttons} onClick={addRecipe}>Add recipe +</button>
+                    <div className={styles.btn__container}>
+                        <Button content={'Add recipe'} fonction={addRecipe} />
+                    </div>
                     {addRecipeDisplay && <AddRecipe />}
                 </section>
                 <section className={styles.section__container}>
                     <header >
-                        <div className={styles.number__container}>{number2}</div>
                         <h2>My plan</h2>
                     </header>
                     <p>Today's meals</p>
-                    {loading ? <ThreeDots color="#56A12A" /> :
+                    {loading ? <ThreeDots color="#7B888E" /> :
                         <div className={styles.plan__container}>
                             <div className={styles.planRecipe__container}>
                                 <h3>Breakfast</h3>
-                                {breakfastName ? <p>{breakfastName}</p> : <ThreeDots color="#56A12A" />}
+                                {breakfastName ? <p>{breakfastName}</p> : <ThreeDots color="#7B888E" />}
                             </div>
                             <div className={styles.planRecipe__container}>
                                 <h3>Lunch</h3>
-                                {lunchName ? <p>{lunchName}</p> : <ThreeDots color="#56A12A" />}
+                                {lunchName ? <p>{lunchName}</p> : <ThreeDots color="#7B888E" />}
                             </div>
                             <div className={styles.planRecipe__container}>
                                 <h3>Dinner</h3>
-                                {dinnerName ? <p>{dinnerName}</p> : <ThreeDots color="#56A12A" />}
+                                {dinnerName ? <p>{dinnerName}</p> : <ThreeDots color="#7B888E" />}
                             </div>
                         </div>
                     }
-                    {breakfastName ? <button className={styles.buttons} onClick={seeMyPlan}>See my plan</button> :
-                        <button className={styles.buttons} onClick={createPlan}>Create a plan +</button>
+                    {breakfastName === 'No plan yet' ?
+                        <div className={styles.btn__container}>
+                            <Button content={'Create a plan'} fonction={createPlan} />
+                        </div>
+                        : <div className={styles.btn__wrapper}>
+                            <div className={styles.btn__container}>
+                                <Button content={'Delete and create'} fonction={deleteAndCreate} color={'light'} />
+                            </div>
+                            <div className={styles.btn__container}>
+                                <Button content={'See my plan'} fonction={seeMyPlan} />
+                            </div>
+                        </div>
+
                     }
+
                 </section>
                 <section className={styles.section__container}>
                     <header className={styles.sectionTitle__container}>
-                        <div className={styles.number__container}>{number3}</div>
                         <h2>My shopping list</h2>
                     </header>
+                    <div className={styles.btn__container}>
+                        <Button content={'See my list'} fonction={seeMyList} />
+                    </div>
                 </section>
-                <button className={styles.logout__btn} onClick={handleLogout}>Logout</button>
+                <div className={styles.btn__container__logout}>
+
+                    <Button content={'Logout'} fonction={handleLogout} color={'light'} />
+                </div>
             </div >
         </div >
     );

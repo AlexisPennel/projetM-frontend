@@ -3,6 +3,9 @@ import ChooseRecipe from './ChooseRecipe';
 import styles from './MealBox.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import Button from '../components/Button';
+import AddRecipe from '../components/AddRecipe'
+
 
 const arrowLeft = <FontAwesomeIcon icon={faArrowLeft} className={styles.arrowLeft} />
 
@@ -10,9 +13,11 @@ const MealBoxLunch = ({ data, day }) => {
     const [popUpDisplay, setPopUpDisplay] = useState(false);
     const [lunchSelected, setLunchSelected] = useState(false);
     const [recipedata, setRecipeData] = useState('');
+    const [addRecipeDisplay, setAddRecipeDisplay] = useState(false)
 
     const showPopUp = () => {
         setPopUpDisplay(true);
+        window.scrollTo(0, 0)
     }
 
     const validateSelect = () => {
@@ -24,6 +29,10 @@ const MealBoxLunch = ({ data, day }) => {
         setLunchSelected(true);
         setRecipeData(data.find(element => element._id === LunchId))
     }
+
+    const addRecipe = () => {
+        setAddRecipeDisplay(!addRecipeDisplay);
+    };
 
     const Goback = () => {
         setPopUpDisplay(false);
@@ -56,7 +65,15 @@ const MealBoxLunch = ({ data, day }) => {
                         <ChooseRecipe key={index} recipes={recipes} />
                     ))};
                 </div>
-                <button onClick={validateSelect} className={styles.validatePopUp}>validate</button>
+                {addRecipeDisplay && <AddRecipe />}
+                <div className={styles.btn__wrapper}>
+                    <div className={styles.btn__container}>
+                        <Button content={'Add recipe'} fonction={addRecipe} color={'light'} />
+                    </div>
+                    <div className={styles.btn__container}>
+                        <Button content={'Validate'} fonction={validateSelect} />
+                    </div>
+                </div>
             </div>}
         </>
     );

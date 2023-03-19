@@ -5,6 +5,9 @@
     justify-content: center;
     align-items: flex-start; 
     margin-bottom: 10%;
+    background-color: var(--lightShades-Transparent);
+    border-radius: 20px;
+    padding: 3%;
 }
 
 form {
@@ -20,24 +23,24 @@ form label {
 }
 
 form input {
-    background-color: rgba(41, 40, 40, 0.644);
+    background-color: var(--lightAccent-Transparent);
     height: 3rem;
     width: 100%;
-    border: 2px solid var(--primaryColor-dark);
+    border: none;
     border-radius: 10px;
-    color: var(--fontColor);
+    color: var(--darkShades);
     font-size: 1.2rem;
 }
 
 form input:focus {
     outline: none !important;
-    border:2px solid var(--primaryColor);
-    box-shadow: 0 0 10px var(--primaryColor-dark);
+    border:2px solid var(--darkAccent);
+    box-shadow: 0 0 5px var(--darkShades);
 }
 
 form input::placeholder {
     padding: 2%;
-    color: var(--fontColor);
+    color: var(--darkShades);
     opacity: 0.7;
 }
 

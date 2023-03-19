@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { fa1 } from '@fortawesome/free-solid-svg-icons'
 import { fa2 } from '@fortawesome/free-solid-svg-icons'
 import { fa3 } from '@fortawesome/free-solid-svg-icons'
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import Button from "../components/Button";
 
 const number1 = <FontAwesomeIcon icon={fa1} className={styles.numbers} />
 const number2 = <FontAwesomeIcon icon={fa2} className={styles.numbers} />
@@ -15,15 +15,6 @@ const number3 = <FontAwesomeIcon icon={fa3} className={styles.numbers} />
 const HomePage = () => {
     const [displayLogin, setDisplayLogin] = useState(true);
     const [displaySignUp, setDisplaySignUp] = useState(false);
-    const navigate = useNavigate()
-    const token = localStorage.getItem('tokenMFP');
-
-
-    useEffect(() => {
-        if (token) {
-            navigate('/dashboard')
-        }
-    }, [navigate, token])
 
 
     const handleLogin = () => {
@@ -67,10 +58,15 @@ const HomePage = () => {
                         <p>Generate a shopping list in no time</p>
                     </div>
                     <p> Easily plan your weekly meals and get all the ingredients.<br />Start meal planning now !</p>
-                    <div className={styles.button__container}>
-                        <button className={styles.button__login} onClick={handleLogin}>Login</button>
-                        <button className={styles.button__signUp} onClick={handleSignUp}>SignUp</button>
+                    <div className={styles.btn__wrapper}>
+                        <div className={styles.button__container}>
+                            <Button color={'light'} fonction={handleLogin} content={'Login'} />
+                        </div>
+                        <div className={styles.button__container}>
+                            <Button fonction={handleSignUp} content={'Sign up'} />
+                        </div>
                     </div>
+
                 </div>
                 {displayLogin && <Login />}
                 {displaySignUp && <SignUp />}

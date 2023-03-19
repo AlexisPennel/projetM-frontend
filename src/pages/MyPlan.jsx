@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './MyPlan.module.css'
 import api from '../api';
 import PlanDay from '../components/PlanDay';
+import Goback from '../components/Goback';
 
 const MyPlan = () => {
     const [planData, setPlanData] = useState([{}])
@@ -24,10 +25,9 @@ const MyPlan = () => {
     }, [])
 
 
-
-
     return (
         <div className={styles.page__container}>
+            <Goback link={'/dashboard'} />
             <div className={styles.content}>
                 <h1>My plan</h1>
                 <section className={styles.daySection}>

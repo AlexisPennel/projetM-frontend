@@ -1,8 +1,7 @@
 .container {
     width: 100%;
     height: auto;
-    background-color: aqua;
-    background-color: rgba(255, 255, 255, 0.144);
+    background-color:var(--lightShades-Transparent);
     border-radius: 10px;
     margin-bottom: 5%;
     display: flex;
@@ -13,6 +12,7 @@
 .container h2 {
     align-self: flex-start;
     margin-left: 3%;
+    color: var(--darkShades);
 }
 
 .recipes__container {
@@ -24,8 +24,8 @@
 }
 
 .recipes {
-    background: rgb(217, 251, 197);
-    background: linear-gradient(266deg, rgb(217, 251, 197) 0%, rgba(140,209,99,1) 25%, rgba(86,161,42,1) 100%);
+    background: rgb(117,166,158);
+    background: linear-gradient(90deg, rgb(117, 166, 158) 0%, rgb(149, 196, 189) 38%);
     box-shadow: -1px 0px 10px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     width: 30%;
@@ -60,7 +60,7 @@
     padding-top: 3%;
     margin: 5%;
     width: auto;
-    background-color:rgba(255, 255, 255, 0.425);
+    background-color:var(--lightShades-Transparent);
     border-radius: 10px;
     margin-right: 1.5%;
     margin-left: 1.5%;
