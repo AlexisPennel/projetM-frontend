@@ -1,3 +1,40 @@
 .content {
     width: 95%;
 }
+
+.ingredients__container {
+    display: flex;
+    width: 50%;
+    height: 2rem;
+    margin-bottom: 2%;
+}
+
+.ingredients__container input {
+    width: 0.9rem;
+    margin-left: 3%;
+    margin-right: 5%;
+}
+
+.ingredients__container p {
+    height: 2rem;
+    color: var(--darkShades);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    margin: 0%;
+}
+
+.list__container {
+    background-color:var(--lightShades-Transparent);
+    backdrop-filter: blur(1px);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 60rem;
+}
+
+.btn__container {
+    width: 100%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}

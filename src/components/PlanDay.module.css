@@ -3,7 +3,7 @@
     height: auto;
     background-color:var(--lightShades-Transparent);
     border-radius: 10px;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,6 +12,8 @@
 .container h2 {
     align-self: flex-start;
     margin-left: 3%;
+    margin: 3%;
+    font-size: 1.3rem;
     color: var(--darkShades);
 }
 
@@ -19,7 +21,7 @@
     width: 100%;
     display: flex;
     justify-content: space-evenly;
-    margin-bottom: 8%;
+    margin-bottom: 5%;
 
 }
 
@@ -28,17 +30,20 @@
     background: linear-gradient(90deg, rgb(117, 166, 158) 0%, rgb(149, 196, 189) 38%);
     box-shadow: -1px 0px 10px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
-    width: 30%;
+    width: 31%;
     height: auto;
 }
 
 .recipes h3 {
     color: var(--primaryColor-dark);
     text-align: center;
-    margin-bottom: 0;
+    margin-bottom: 5%;
+    margin-top: 5%;
+    font-size: 1rem;
 }
 
 .recipes h4 {
+    font-size: 0.9rem;
     margin-left: 5%;
     margin-bottom: 3%;
     margin-top: 8%;
@@ -46,14 +51,15 @@
 
 .recipes__ingredients {
     display: flex;
-    width: 100%;
-    margin-left: 3%;
+    width: 99%;
+    margin-left: 2%;
+    margin-right: 2%;
     flex-wrap: wrap;
     margin-bottom: 5%;
 }
 
 .recipes__ingredients p {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     padding-left: 3%;
     padding-right: 3%;
     padding-bottom: 3%;

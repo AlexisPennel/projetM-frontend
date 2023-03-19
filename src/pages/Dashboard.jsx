@@ -138,6 +138,28 @@ const Dashboard = () => {
     const deleteAndCreate = () => {
         if (window.confirm("Are you sure to delete your plan ?")) {
             const id = localStorage.getItem('planId');
+            localStorage.removeItem('MondayBreakfast');
+            localStorage.removeItem('MondayLunch');
+            localStorage.removeItem('MondayDinner');
+            localStorage.removeItem('TuesdayBreakfast');
+            localStorage.removeItem('TuesdayLunch');
+            localStorage.removeItem('TuesdayDinner');
+            localStorage.removeItem('WednesdayBreakfast');
+            localStorage.removeItem('WednesdayLunch');
+            localStorage.removeItem('WednesdayDinner');
+            localStorage.removeItem('ThursdayBreakfast');
+            localStorage.removeItem('ThursdayLunch');
+            localStorage.removeItem('ThursdayDinner');
+            localStorage.removeItem('FridayBreakfast');
+            localStorage.removeItem('FridayLunch');
+            localStorage.removeItem('FridayDinner');
+            localStorage.removeItem('SaturdayBreakfast');
+            localStorage.removeItem('SaturdayLunch');
+            localStorage.removeItem('SaturdayDinner');
+            localStorage.removeItem('SundayBreakfast');
+            localStorage.removeItem('SundayLunch');
+            localStorage.removeItem('SundayDinner');
+            localStorage.removeItem('planId');
             api.delete(`api/plans/${id}`)
                 .then((response) => {
                     navigate('/plan/createplan')
